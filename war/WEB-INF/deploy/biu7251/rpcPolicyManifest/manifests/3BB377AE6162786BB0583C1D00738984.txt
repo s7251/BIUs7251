@@ -1,0 +1,2 @@
+serviceClass: com.biu.project.client.GreetingService
+path: A78D7EAF3FCE5064B66969C90A4C08C4.gwt.rpc
