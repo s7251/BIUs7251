@@ -1,17 +1,12 @@
 package com.biu.project.client;
 
-import com.biu.project.shared.FieldVerifier;
+import com.biu.project.server.GreetingServiceImpl;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -31,22 +26,78 @@ public class Biu7251 implements EntryPoint {
 			.create(GreetingService.class);
 	
 	public void onModuleLoad() {
-					
 		final Label street = new Label();
-		street.setText("Ul. Malinowa 18");
+		
+		greetingService.getAdress(
+				new AsyncCallback<String>() {
+					public void onFailure(Throwable caught) {
+						System.out.println("fail");
+					}
+
+					public void onSuccess(String result) {
+						street.setText(result);
+						System.out.println(result);
+					}
+				});
+		
+		 
 		street.addStyleName("styl");
 		
+		 
+		    
+	/*	final Label street = new Label();
+		street.setText("Ul. Malinowa 18");
+	    street.addStyleName("styl");	*/
+		
+		
 		final Label adress = new Label();
-		adress.setText("89-600 Chojnice");
+		
+		
+		greetingService.getCityAndPostalCode(
+				new AsyncCallback<String>() {
+					public void onFailure(Throwable caught) {
+						System.out.println("fail");
+					}
+
+					public void onSuccess(String result) {
+						adress.setText(result);
+						System.out.println(result);
+					}
+				});
+		
 		adress.addStyleName("styl");
 				
 		final Label telephone = new Label();
-		telephone.setText("797093873");
+		
+		greetingService.getTelephone(
+				new AsyncCallback<String>() {
+					public void onFailure(Throwable caught) {
+						System.out.println("fail");
+					}
+
+					public void onSuccess(String result) {
+						telephone.setText(result);
+						System.out.println(result);
+					}
+				});
+	
 		telephone.addStyleName("styl");
 			
 		final Label mail = new Label();
-		mail.setText("krystian.kulas@gmail.com");
-		mail.addStyleName("styl");
+		
+		greetingService.getMail(
+				new AsyncCallback<String>() {
+					public void onFailure(Throwable caught) {
+						System.out.println("fail");
+					}
+
+					public void onSuccess(String result) {
+						mail.setText(result);
+						System.out.println(result);
+					}
+				});
+		
+				mail.addStyleName("styl");
 		
 		final Image image = new Image();
     	image.setUrl("drawing.jpg");

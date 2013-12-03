@@ -1,5 +1,10 @@
 package com.biu.project.server;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import com.biu.project.client.GreetingService;
 import com.biu.project.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -11,38 +16,159 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 public class GreetingServiceImpl extends RemoteServiceServlet implements
 		GreetingService {
 
-	public String greetServer(String input) throws IllegalArgumentException {
-		// Verify that the input is valid. 
-		if (!FieldVerifier.isValidName(input)) {
-			// If the input is not valid, throw an IllegalArgumentException back to
-			// the client.
-			throw new IllegalArgumentException(
-					"Name must be at least 4 characters long");
-		}
+	public String getAdress() throws IllegalArgumentException {
+		
+		
+		 FileReader fr = null;
+		   String linia = "";
+		   String temp;
+		   // OTWIERANIE PLIKU:
+		   try {
+		     fr = new FileReader("plik.txt");
+		   } catch (FileNotFoundException e) {
+		       System.out.println("BŁĄD PRZY OTWIERANIU PLIKU!");
+		       System.exit(1);
+		   }
 
-		String serverInfo = getServletContext().getServerInfo();
-		String userAgent = getThreadLocalRequest().getHeader("User-Agent");
+		   BufferedReader bfr = new BufferedReader(fr);
+		   // ODCZYT KOLEJNYCH LINII Z PLIKU:
+		   try {
+		     while((temp = bfr.readLine()) != null){
+		       
+		      linia += temp;
+		     }
+		    } catch (IOException e) {
+		        System.out.println("BŁĄD ODCZYTU Z PLIKU!");
+		        System.exit(2);
+		   }
 
-		// Escape data from the client to avoid cross-site script vulnerabilities.
-		input = escapeHtml(input);
-		userAgent = escapeHtml(userAgent);
+		   // ZAMYKANIE PLIKU
+		   try {
+		     fr.close();
+		    } catch (IOException e) {
+		         System.out.println("BŁĄD PRZY ZAMYKANIU PLIKU!");
+		         System.exit(3);
+		        }
+		
+		
+		 
 
-		return "Hello, " + input + "!<br><br>I am running " + serverInfo
-				+ ".<br><br>It looks like you are using:<br>" + userAgent;
+		return linia;
 	}
+	
+	public String getCityAndPostalCode() {
+		   FileReader fr = null;
+		   String linia = "";
+		   String temp;
+		   // OTWIERANIE PLIKU:
+		   try {
+		     fr = new FileReader("plik2.txt");
+		   } catch (FileNotFoundException e) {
+		       System.out.println("BŁĄD PRZY OTWIERANIU PLIKU!");
+		       System.exit(1);
+		   }
 
-	/**
-	 * Escape an html string. Escaping data received from the client helps to
-	 * prevent cross-site script vulnerabilities.
-	 * 
-	 * @param html the html string to escape
-	 * @return the escaped string
-	 */
-	private String escapeHtml(String html) {
-		if (html == null) {
-			return null;
-		}
-		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
+		   BufferedReader bfr = new BufferedReader(fr);
+		   // ODCZYT KOLEJNYCH LINII Z PLIKU:
+		   try {
+		     while((temp = bfr.readLine()) != null){
+		       
+		      linia += temp;
+		     }
+		    } catch (IOException e) {
+		        System.out.println("BŁĄD ODCZYTU Z PLIKU!");
+		        System.exit(2);
+		   }
+
+		   // ZAMYKANIE PLIKU
+		   try {
+		     fr.close();
+		    } catch (IOException e) {
+		         System.out.println("BŁĄD PRZY ZAMYKANIU PLIKU!");
+		         System.exit(3);
+		        }
+		
+		
+		 
+
+		return linia;
 	}
+	
+	public String getTelephone() {
+		   FileReader fr = null;
+		   String linia = "";
+		   String temp;
+		   // OTWIERANIE PLIKU:
+		   try {
+		     fr = new FileReader("plik3.txt");
+		   } catch (FileNotFoundException e) {
+		       System.out.println("BŁĄD PRZY OTWIERANIU PLIKU!");
+		       System.exit(1);
+		   }
+
+		   BufferedReader bfr = new BufferedReader(fr);
+		   // ODCZYT KOLEJNYCH LINII Z PLIKU:
+		   try {
+		     while((temp = bfr.readLine()) != null){
+		       
+		      linia += temp;
+		     }
+		    } catch (IOException e) {
+		        System.out.println("BŁĄD ODCZYTU Z PLIKU!");
+		        System.exit(2);
+		   }
+
+		   // ZAMYKANIE PLIKU
+		   try {
+		     fr.close();
+		    } catch (IOException e) {
+		         System.out.println("BŁĄD PRZY ZAMYKANIU PLIKU!");
+		         System.exit(3);
+		        }
+		
+		
+		 
+
+		return linia;
+	}
+	
+	public String getMail() {
+		   FileReader fr = null;
+		   String linia = "";
+		   String temp;
+		   // OTWIERANIE PLIKU:
+		   try {
+		     fr = new FileReader("plik4.txt");
+		   } catch (FileNotFoundException e) {
+		       System.out.println("BŁĄD PRZY OTWIERANIU PLIKU!");
+		       System.exit(1);
+		   }
+
+		   BufferedReader bfr = new BufferedReader(fr);
+		   // ODCZYT KOLEJNYCH LINII Z PLIKU:
+		   try {
+		     while((temp = bfr.readLine()) != null){
+		       
+		      linia += temp;
+		     }
+		    } catch (IOException e) {
+		        System.out.println("BŁĄD ODCZYTU Z PLIKU!");
+		        System.exit(2);
+		   }
+
+		   // ZAMYKANIE PLIKU
+		   try {
+		     fr.close();
+		    } catch (IOException e) {
+		         System.out.println("BŁĄD PRZY ZAMYKANIU PLIKU!");
+		         System.exit(3);
+		        }
+		
+		
+		 
+
+		return linia;
+	}
+	
+
 }
