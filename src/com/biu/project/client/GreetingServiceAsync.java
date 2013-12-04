@@ -10,5 +10,8 @@ public interface GreetingServiceAsync {
 	void getCityAndPostalCode(AsyncCallback<String> callback) throws IllegalArgumentException;
 	void getTelephone(AsyncCallback<String> callback) throws IllegalArgumentException;
 	void getMail(AsyncCallback<String> callback) throws IllegalArgumentException;
-	
+	void setAdress(String street, AsyncCallback<Void> asyncCallback);
+	void setCityAndPostalCode(String adress, AsyncCallback<Void> callback);
+	void setTelephone(String telephone, AsyncCallback<Void> callback);
+	void setMail(String mail, AsyncCallback<Void> callback);
 }

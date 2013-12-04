@@ -12,4 +12,9 @@ public interface GreetingService extends RemoteService {
 	String getCityAndPostalCode() throws IllegalArgumentException;
 	String getTelephone() throws IllegalArgumentException;
 	String getMail() throws IllegalArgumentException;
+	void setAdress(String street);
+	void setCityAndPostalCode(String adress);
+	void setTelephone(String telephone);
+	void setMail(String mail);
+
 }
